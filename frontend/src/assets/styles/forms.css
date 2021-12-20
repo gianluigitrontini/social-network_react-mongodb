@@ -1,0 +1,60 @@
+.authWrapper {
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    .auth_formGroupWrapper {
+      margin: 0.5rem 0;
+      display: flex;
+      flex-direction: column;
+    }
+    button {
+      font-size: 1.15rem;
+    }
+  }
+}
+
+.input-with-end-icon-wrapper {
+  @apply relative;
+  svg {
+    right: 1rem;
+    bottom: 0.5rem;
+  }
+}
+
+input.with-end-icon {
+  padding-right: 3rem !important;
+}
+
+[multiple],
+[type='date'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='text'],
+[type='time'],
+[type='url'],
+[type='week'],
+select,
+textarea {
+  @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+}
+
+[type='checkbox'] {
+  @apply rounded border-gray-300 text-blue-400 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50;
+}
