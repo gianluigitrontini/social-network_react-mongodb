@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { AddAPhoto } from '@material-ui/icons';
+import { AuthContext } from '../../context/AuthContext';
+import axios from 'axios';
 
-export default function ShareOnFeed() {
+export default function ShareOnFeed({ setUpdateTimeline, updateTimeline }) {
+  const { state } = useContext(AuthContext);
+
+  const [post, setPost] = useState({
+    userId: state.user._id,
+    content: '',
+    media: '',
+    likes: [],
+    comments: [],
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post('/posts', post).then(setUpdateTimeline(!updateTimeline));
+  };
   return (
     <div className='feedShare'>
       <div className='feedShare--top'>
@@ -10,9 +25,10 @@ export default function ShareOnFeed() {
           src='/assets/uploaded/profile/profile-avatar.jpg'
           alt=''
         />
-        <div className='feedShare--PostInputWrapper'>
+        <form onSubmit={handleSubmit} className='feedShare--PostInputWrapper'>
           <textarea
-            name=''
+            onChange={(e) => setPost({ ...post, content: e.target.value })}
+            name='content'
             id=''
             cols='30'
             rows='3'
@@ -26,7 +42,7 @@ export default function ShareOnFeed() {
             </div>
             <button>Invia</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

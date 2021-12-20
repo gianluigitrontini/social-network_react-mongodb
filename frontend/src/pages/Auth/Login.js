@@ -1,23 +1,19 @@
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import axios from 'axios';
 import React, { useState, useContext } from 'react';
-import { loginCall } from '../../apiCalls';
 import { AuthContext } from '../../context/AuthContext';
 
 export default function Login() {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // loginCall(
-    //   { email: loginData.email, password: loginData.password },
-    //   dispatch
-    // );
-    await axios.get('/auth/login', loginData);
-    console.log(user);
+
+    const res = await axios.post('/auth/login', loginData);
+    await dispatch({ type: 'LOGIN', payload: res.data });
   };
 
   const LoadingSvg = (
@@ -84,7 +80,8 @@ export default function Login() {
       </div>
       {/* <button>{isFetching ? <>{LoadingSvg} Loading...</> : 'Login'}</button> */}
       <button className='inline-flex items-center justify-center'>
-        {isFetching ? <>{LoadingSvg} Loading...</> : 'Login'}
+        {/* {isFetching ? <>{LoadingSvg} Loading...</> : 'Login'} */}
+        Login
       </button>
     </form>
   );

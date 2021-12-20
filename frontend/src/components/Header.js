@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Chat, Person, Notifications } from '@material-ui/icons';
 import { Badge, IconButton, withStyles } from '@material-ui/core';
 import Searchbar from './Searchbar/Searchbar';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Header() {
+  const { dispatch } = useContext(AuthContext);
+
   const StyledBadge = withStyles((theme) => ({
     badge: {
       right: -3,
@@ -24,13 +27,16 @@ export default function Header() {
     );
   }
 
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+  };
   return (
     <div className='topbarContainer'>
       <div className='container'>
         <div className='topbarLogo'>
-          <Link to='/'>
+          <button onClick={handleLogout}>
             <span className='logo'>UniSocial</span>
-          </Link>
+          </button>
         </div>
         <div className='topbarSearch'>
           <Searchbar />

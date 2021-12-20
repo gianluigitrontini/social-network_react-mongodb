@@ -5,6 +5,7 @@ export default function Register() {
   const [registerData, setRegisterData] = useState({
     firstName: '',
     lastName: '',
+    username: '',
     email: '',
     password: '',
   });
@@ -79,6 +80,19 @@ export default function Register() {
           }
           required
           placeholder='Email Address'
+        />
+      </div>
+      <div className='auth_formGroupWrapper'>
+        <input
+          type='text'
+          id='username'
+          className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+          value={registerData.username}
+          onChange={(e) =>
+            setRegisterData({ ...registerData, username: e.target.value })
+          }
+          required
+          placeholder='Username'
         />
       </div>
       <div className='auth_formGroupWrapper'>

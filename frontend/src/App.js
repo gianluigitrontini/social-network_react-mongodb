@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Layout from './pages/Layout';
 import Header from './components/Header';
 import Feed from './components/Feed/Feed';
@@ -6,13 +6,14 @@ import Profile from './pages/Profile/Profile';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Auth from './pages/Auth/Auth';
+import { AuthContext } from './context/AuthContext';
 
 function App(props) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { state } = useContext(AuthContext);
   return (
     <>
       <Switch>
-        {isAuthenticated ? (
+        {localStorage.getItem('user') !== null ? (
           <>
             <Header />
             <Route path='/authenticate'>
