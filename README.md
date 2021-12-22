@@ -1,4 +1,4 @@
-# uni-social-react-mongodb
+# University Social Network
 A kind of Facebook but for University. Just like Facebook was, but in 2021.
 
 Not exactly a clone, but we can find a lot of similarities between the two.  
